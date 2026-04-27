@@ -59,6 +59,12 @@ export default function Navigation() {
               Nearby
             </Link>
             <Link
+              href="/stats"
+              className="hidden sm:inline text-neutral-700 hover:text-primary font-medium transition-colors"
+            >
+              Stats
+            </Link>
+            <Link
               href="/about"
               className="text-neutral-700 hover:text-primary font-medium transition-colors text-sm sm:text-base"
             >
