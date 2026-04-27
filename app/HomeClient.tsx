@@ -6,7 +6,7 @@ import { useData } from './hooks/useData';
 import { useFavorites } from './hooks/useFavorites';
 import { useLanguage } from './components/LanguageProvider';
 import { Session, Day } from './types';
-import { isHappeningNow } from './utils/time';
+import { isHappeningNow, getTodayDay } from './utils/time';
 import NowHappeningBanner from './components/NowHappeningBanner';
 import FilterSidebar from './components/FilterSidebar';
 import SessionCard from './components/SessionCard';
@@ -22,7 +22,7 @@ export default function HomeClient() {
 
   const [viewMode, setViewMode] = useState<ViewMode>('list');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [selectedDay, setSelectedDay] = useState<Day | null>(null);
+  const [selectedDay, setSelectedDay] = useState<Day | null>(getTodayDay() as Day | null);
   const [selectedStages, setSelectedStages] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
