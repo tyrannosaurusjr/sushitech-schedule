@@ -1,206 +1,104 @@
 [
   {
     "id": 1,
-    "name": { "en": "Ariake Garden Dining", "jp": "有明ガーデン グルメ棟" },
-    "category": "restaurant",
-    "vibe": ["lunch", "variety", "convenient", "family"],
+    "name": { "en": "Convenience Store (that's it)", "jp": "コンビニ（以上）" },
+    "category": "cafe",
+    "vibe": ["quick", "budget", "coffee", "honest"],
     "description": {
-      "en": "30+ restaurants across multiple floors attached to the Dome Hotel — ramen, sushi, izakaya, Korean BBQ, and more. Your best no-commute lunch option on conference days.",
-      "jp": "有明ガーデン内のグルメ棟。ラーメン・寿司・居酒屋・焼肉など30店舗以上。会議の合間に寄れる最も便利な選択肢。"
+      "en": "Lawson at the venue gate. Hot food, onigiri, canned beer, coffee. This is your only real walkable option — the area has nothing else worth mentioning. Use it between sessions, then go to Shimbashi.",
+      "jp": "会場ゲート前のローソン。ホットスナック・おにぎり・缶ビール・コーヒー。この辺りで歩いて行けるまともな選択肢はここだけ。セッションの合間に使って、その後は新橋へ。"
     },
     "tier": "walk",
-    "distance": { "en": "10 min walk", "jp": "徒歩10分" },
+    "distance": { "en": "2 min walk", "jp": "徒歩2分" },
     "transport": "walk",
-    "mapsUrl": "https://maps.google.com/?q=有明ガーデン+東京",
-    "priceRange": 2,
-    "hours": { "en": "11:00–23:00 (varies by shop)", "jp": "11:00〜23:00（店舗により異なる）" },
-    "tags": ["en-ok", "lunch", "dinner"]
+    "mapsUrl": "https://maps.google.com/?q=ローソン+国際展示場駅",
+    "priceRange": 1,
+    "hours": { "en": "24 hours", "jp": "24時間" },
+    "tags": ["quick", "budget"]
   },
   {
     "id": 2,
-    "name": { "en": "DiverCity Tokyo Restaurants", "jp": "ダイバーシティ東京 レストラン" },
-    "category": "restaurant",
-    "vibe": ["lunch", "variety", "casual"],
+    "name": { "en": "Shimbashi — SL Plaza Izakaya Alleys", "jp": "新橋 SL広場周辺の居酒屋横丁" },
+    "category": "bar",
+    "vibe": ["izakaya", "standing-bar", "yakitori", "sake", "beer", "salaryman"],
     "description": {
-      "en": "Mall food floor near Odaiba. Nothing exceptional but solid coverage — izakaya chains, ramen, burger spots. Jump on the free shuttle bus from Big Sight Gate.",
-      "jp": "お台場の定番ショッピングモール。チェーン系居酒屋やラーメンなど揃っている。ビッグサイト正門からシャトルバスで。"
+      "en": "The main event. Dozens of tiny yakitori joints and standing bars packed into the alleys around SL Plaza. Loud, honest, cheap. ¥500 skewers, ¥400 draft beer, no menus in English but you don't need one — point at what the table next to you is having.",
+      "jp": "メインイベント。SL広場周辺の路地に焼き鳥・立ち飲みが密集。賑やか・本物・安い。焼き鳥500円、生ビール400円台。英語メニューはないが不要。隣のテーブルのものを指差せばOK。"
     },
-    "tier": "shuttle",
-    "distance": { "en": "5 min by shuttle bus", "jp": "シャトルバスで5分" },
-    "transport": "bus",
-    "mapsUrl": "https://maps.google.com/?q=ダイバーシティ東京プラザ",
-    "priceRange": 2,
-    "hours": { "en": "11:00–21:00", "jp": "11:00〜21:00" },
-    "tags": ["en-ok", "lunch"]
+    "tier": "shimbashi",
+    "distance": { "en": "25 min direct — Yurikamome from venue gate to Shimbashi (terminal)", "jp": "25分直通 — 会場前からゆりかもめで新橋（終点）" },
+    "transport": "train",
+    "mapsUrl": "https://maps.google.com/?q=新橋SL広場+東京",
+    "priceRange": 1,
+    "hours": { "en": "17:00–01:00", "jp": "17:00〜翌01:00" },
+    "tags": ["izakaya", "yakitori", "standing-bar", "post-conference"]
   },
   {
     "id": 3,
-    "name": { "en": "Toyosu Sengoku Banrai (千客万来)", "jp": "豊洲千客万来" },
-    "category": "restaurant",
-    "vibe": ["seafood", "sushi", "lunch", "market"],
+    "name": { "en": "Shimbashi — Karasumori Shrine Alley (烏森神社)", "jp": "新橋 烏森神社横丁" },
+    "category": "bar",
+    "vibe": ["standing-bar", "izakaya", "sake", "local", "hidden"],
     "description": {
-      "en": "Opened 2024 next to Toyosu Market — Edo-style food hall with top-tier tuna bowls, fresh sushi, skewers, and sake. Worth the 2-stop Yurikamome ride. Get there before noon to avoid lines.",
-      "jp": "2024年オープン。豊洲市場隣接の江戸情緒フードホール。マグロ丼・新鮮寿司・串焼きなど揃う。ゆりかもめで2駅。昼前に行くのがおすすめ。"
+      "en": "Tucked behind the shrine, a cluster of some of Tokyo's smallest and oldest drinking spots. Stools at a counter, owner pours, no rush. Better quality than the SL Plaza tourist-adjacent spots — locals and regulars only.",
+      "jp": "神社の裏に東京最小クラスの飲み屋が集まる。カウンター数席、マスターが注ぐ、急かされない。SL広場周辺より質が高く、地元の常連だけが知るエリア。"
     },
-    "tier": "train",
-    "distance": { "en": "12 min by Yurikamome (2 stops)", "jp": "ゆりかもめ2駅・約12分" },
+    "tier": "shimbashi",
+    "distance": { "en": "25 min direct — Yurikamome from venue gate to Shimbashi (terminal)", "jp": "25分直通 — 会場前からゆりかもめで新橋（終点）" },
     "transport": "train",
-    "mapsUrl": "https://maps.google.com/?q=豊洲千客万来",
-    "priceRange": 2,
-    "hours": { "en": "10:00–22:00", "jp": "10:00〜22:00" },
-    "tags": ["seafood", "sushi", "lunch", "en-ok"]
+    "mapsUrl": "https://maps.google.com/?q=烏森神社+新橋+東京",
+    "priceRange": 1,
+    "hours": { "en": "17:00–24:00", "jp": "17:00〜24:00" },
+    "tags": ["standing-bar", "sake", "local", "no-english"]
   },
   {
     "id": 4,
-    "name": { "en": "Tsukiji Outer Market", "jp": "築地場外市場" },
+    "name": { "en": "Shimbashi — Yakitori Under the Tracks", "jp": "新橋 高架下の焼き鳥" },
     "category": "restaurant",
-    "vibe": ["seafood", "sushi", "tamagoyaki", "breakfast", "lunch"],
+    "vibe": ["yakitori", "beer", "smoke", "casual", "dinner"],
     "description": {
-      "en": "The classic. Fresh sushi, tuna bowls, tamagoyaki on a stick, grilled scallops. About 25 min by train but worth it for a proper lunch — take Yurikamome to Shimbashi, then Hibiya Line 2 stops.",
-      "jp": "説明不要の築地。新鮮な寿司・海鮮丼・玉子焼き・焼き帆立など。電車で約25分。ゆりかもめで新橋→日比谷線で築地。"
+      "en": "The elevated train tracks through Shimbashi have yakitori shops shoved underneath them — smoky, cramped, perfect. Order the negima (chicken and green onion), tsukune, and whatever the seasonal special is. Draft beer or highball.",
+      "jp": "高架下に焼き鳥屋がひしめく。煙が充満して、席は狭くて、最高。ねぎま・つくね・季節のおすすめを注文。生ビールかハイボールで。"
     },
-    "tier": "worth-the-trip",
-    "distance": { "en": "~25 min by train", "jp": "電車で約25分" },
+    "tier": "shimbashi",
+    "distance": { "en": "25 min direct — Yurikamome from venue gate to Shimbashi (terminal)", "jp": "25分直通 — 会場前からゆりかもめで新橋（終点）" },
     "transport": "train",
-    "mapsUrl": "https://maps.google.com/?q=築地場外市場",
-    "priceRange": 2,
-    "hours": { "en": "6:00–14:00 (most shops close early)", "jp": "6:00〜14:00（早い店は昼過ぎに閉まる）" },
-    "tags": ["seafood", "sushi", "breakfast", "lunch"]
+    "mapsUrl": "https://maps.google.com/?q=焼き鳥+新橋+高架下+東京",
+    "priceRange": 1,
+    "hours": { "en": "16:00–23:00", "jp": "16:00〜23:00" },
+    "tags": ["yakitori", "beer", "dinner", "smoke"]
   },
   {
     "id": 5,
-    "name": { "en": "Shimbashi Izakaya Alleys", "jp": "新橋 居酒屋横丁" },
-    "category": "bar",
-    "vibe": ["izakaya", "standing-bar", "salaryman", "yakitori", "sake", "beer"],
-    "description": {
-      "en": "Tokyo's best salaryman izakaya district. Dozens of tiny yakitori and standing bars under the elevated tracks at SL Plaza. Loud, cheap, and honest. Perfect post-conference decompression.",
-      "jp": "東京最高のサラリーマン居酒屋街。SL広場周辺の高架下に焼き鳥・立ち飲みが密集。安くて本物。会議後の一杯に最高。"
-    },
-    "tier": "worth-the-trip",
-    "distance": { "en": "~20 min by Yurikamome", "jp": "ゆりかもめで約20分" },
-    "transport": "train",
-    "mapsUrl": "https://maps.google.com/?q=新橋居酒屋+SL広場",
-    "priceRange": 1,
-    "hours": { "en": "17:00–24:00", "jp": "17:00〜24:00" },
-    "tags": ["izakaya", "standing-bar", "post-conference", "yakitori"]
-  },
-  {
-    "id": 6,
-    "name": { "en": "Craft Beer Market Ginza", "jp": "クラフトビアマーケット 銀座" },
-    "category": "bar",
-    "vibe": ["craft-beer", "casual", "standing-bar", "variety"],
-    "description": {
-      "en": "30+ craft beers on tap, reasonable prices, standing and seated. Reliable chain but the tap list is genuinely good. Good place to meet speakers for a low-key drink.",
-      "jp": "30種以上のクラフトビールが揃うチェーン店。スタンディング・着席どちらも可。タップラインナップは本物。スピーカーと気軽な一杯にも。"
-    },
-    "tier": "worth-the-trip",
-    "distance": { "en": "~25 min by train", "jp": "電車で約25分" },
-    "transport": "train",
-    "mapsUrl": "https://maps.google.com/?q=クラフトビアマーケット+銀座",
-    "priceRange": 2,
-    "hours": { "en": "12:00–23:00", "jp": "12:00〜23:00" },
-    "tags": ["craft-beer", "en-ok"]
-  },
-  {
-    "id": 7,
-    "name": { "en": "Ginza Six Dining Floor", "jp": "GINZA SIX 飲食フロア" },
-    "category": "restaurant",
-    "vibe": ["upscale", "variety", "sake", "wine", "dinner"],
-    "description": {
-      "en": "If you're taking a speaker out or doing a proper dinner, Ginza Six's 13F/B2F have solid high-end options. Japanese, Italian, French, plenty of sake and wine bars. Not cheap.",
-      "jp": "スピーカーとの会食や記念日ディナーに。13F・B2Fに和・伊・仏など揃う。日本酒バーやワインバーも充実。予算は要確認。"
-    },
-    "tier": "worth-the-trip",
-    "distance": { "en": "~25 min by train", "jp": "電車で約25分" },
-    "transport": "train",
-    "mapsUrl": "https://maps.google.com/?q=GINZA+SIX+東京",
-    "priceRange": 3,
-    "hours": { "en": "11:00–23:00", "jp": "11:00〜23:00" },
-    "tags": ["dinner", "business", "en-ok"]
-  },
-  {
-    "id": 8,
-    "name": { "en": "Odaiba Seaside Cafe Strip", "jp": "お台場シーサイドカフェ" },
-    "category": "cafe",
-    "vibe": ["coffee", "view", "casual", "break"],
-    "description": {
-      "en": "Several cafes along the Odaiba waterfront with Rainbow Bridge views. Good for a mid-afternoon coffee break or working between sessions. Short walk from Big Sight along the promenade.",
-      "jp": "お台場のウォーターフロント沿いにカフェが点在。レインボーブリッジを眺めながらコーヒーブレイクに。ビッグサイトから遊歩道沿いに歩いて行ける。"
-    },
-    "tier": "walk",
-    "distance": { "en": "15–20 min walk", "jp": "徒歩15〜20分" },
-    "transport": "walk",
-    "mapsUrl": "https://maps.google.com/?q=お台場+カフェ+海岸",
-    "priceRange": 2,
-    "hours": { "en": "10:00–20:00 (varies)", "jp": "10:00〜20:00（店舗により異なる）" },
-    "tags": ["coffee", "wifi", "view"]
-  },
-  {
-    "id": 9,
-    "name": { "en": "Toyosu / Shinonome Ramen", "jp": "豊洲・東雲ラーメン" },
+    "name": { "en": "Shimbashi — Ramen Lunch", "jp": "新橋 ラーメンランチ" },
     "category": "restaurant",
     "vibe": ["ramen", "quick", "lunch", "solo"],
     "description": {
-      "en": "The Toyosu and Shinonome neighborhoods (Rinkai Line or Yurikamome) have a handful of no-nonsense ramen shops popular with local office workers. Quick, sub-¥1,200, no reservations needed.",
-      "jp": "豊洲・東雲エリアには地元のビジネスマン向けラーメン店が点在。りんかい線またはゆりかもめでアクセス可。1200円以下でサクッと。"
+      "en": "Shimbashi has a dense cluster of ramen shops for the office crowd. Multiple styles — tonkotsu, shoyu, tsukemen. All under ¥1,200, quick turnover, no reservations. Walk in, eat, done in 20 min.",
+      "jp": "オフィスワーカー向けのラーメン店が集中。豚骨・醤油・つけ麺などスタイル豊富。1200円以内、回転が速い、予約不要。入って食べて20分で出られる。"
     },
-    "tier": "train",
-    "distance": { "en": "8 min by train", "jp": "電車で約8分" },
+    "tier": "shimbashi",
+    "distance": { "en": "25 min direct — Yurikamome from venue gate to Shimbashi (terminal)", "jp": "25分直通 — 会場前からゆりかもめで新橋（終点）" },
     "transport": "train",
-    "mapsUrl": "https://maps.google.com/?q=ラーメン+豊洲駅+東京",
+    "mapsUrl": "https://maps.google.com/?q=ラーメン+新橋駅+東京",
     "priceRange": 1,
     "hours": { "en": "11:00–22:00", "jp": "11:00〜22:00" },
     "tags": ["ramen", "quick", "lunch", "solo"]
   },
   {
-    "id": 10,
-    "name": { "en": "Roppongi Craft Beer Scene", "jp": "六本木クラフトビール" },
-    "category": "bar",
-    "vibe": ["craft-beer", "international", "nightlife", "en-friendly"],
+    "id": 6,
+    "name": { "en": "Shimbashi — Standing Sushi", "jp": "新橋 立ち食い寿司" },
+    "category": "restaurant",
+    "vibe": ["sushi", "standing", "quick", "lunch", "sake"],
     "description": {
-      "en": "If the conference runs long and you want a solid craft beer with English-comfortable staff, Roppongi has the deepest selection in Tokyo. BrewDog, Craft Beer Bar BYGs, and others are all within a few blocks.",
-      "jp": "会議が長引いた後の一杯なら六本木。英語対応もしやすいクラフトビールバーが集中。BrewDogやBYGsなど数ブロックに凝縮。"
+      "en": "Standing sushi bars are one of Tokyo's best inventions and Shimbashi has several. Counter seating only, fresh fish, sake or beer to go with it. Order by piece, eat standing, pay and go. Under ¥2,000 for a proper meal.",
+      "jp": "立ち食い寿司は東京が誇る文化のひとつ。新橋には数店舗あり。カウンターのみ、新鮮なネタ、日本酒かビールで。1貫ずつ注文し、立ったまま食べて会計、終わり。2000円以内でちゃんとした食事になる。"
     },
-    "tier": "worth-the-trip",
-    "distance": { "en": "~30 min by train", "jp": "電車で約30分" },
+    "tier": "shimbashi",
+    "distance": { "en": "25 min direct — Yurikamome from venue gate to Shimbashi (terminal)", "jp": "25分直通 — 会場前からゆりかもめで新橋（終点）" },
     "transport": "train",
-    "mapsUrl": "https://maps.google.com/?q=craft+beer+六本木+東京",
-    "priceRange": 2,
-    "hours": { "en": "17:00–02:00", "jp": "17:00〜翌02:00" },
-    "tags": ["craft-beer", "en-ok", "nightlife"]
-  },
-  {
-    "id": 11,
-    "name": { "en": "Ariake / Kokusai-Tenjijo Station Convenience", "jp": "国際展示場駅周辺コンビニ飯" },
-    "category": "cafe",
-    "vibe": ["quick", "coffee", "budget", "solo"],
-    "description": {
-      "en": "Lawson and 7-Eleven within 2 min of the venue gates. Underrated hot food, onigiri, decent sandwiches. Strong choice if you have 20 min between sessions and don't want to overthink it.",
-      "jp": "国際展示場駅・ビッグサイト正門前のローソン・7-Eleven。ホットスナック・おにぎり・サンドイッチなど。セッションの合間の20分ランチに最適。"
-    },
-    "tier": "walk",
-    "distance": { "en": "2 min walk", "jp": "徒歩2分" },
-    "transport": "walk",
-    "mapsUrl": "https://maps.google.com/?q=コンビニ+国際展示場駅",
+    "mapsUrl": "https://maps.google.com/?q=立ち食い寿司+新橋+東京",
     "priceRange": 1,
-    "hours": { "en": "24 hours", "jp": "24時間" },
-    "tags": ["quick", "budget", "coffee", "solo"]
-  },
-  {
-    "id": 12,
-    "name": { "en": "Akihabara / Kanda Standing Bars", "jp": "秋葉原・神田の立ち飲み" },
-    "category": "bar",
-    "vibe": ["standing-bar", "sake", "beer", "izakaya", "local"],
-    "description": {
-      "en": "If you end up heading north after the conference — Akihabara and Kanda have some of Tokyo's best standing bars and old-school izakayas. Under ¥500/glass, locals only (mostly), zero English menus. Great.",
-      "jp": "会議後に北上するなら秋葉原・神田の立ち飲み街。500円以下のグラスワイン・日本酒・ビール。観光客が少なく、本物の東京の酒場文化が残っている。"
-    },
-    "tier": "worth-the-trip",
-    "distance": { "en": "~35 min by Rinkai + Chuo Line", "jp": "りんかい線+中央線で約35分" },
-    "transport": "train",
-    "mapsUrl": "https://maps.google.com/?q=立ち飲み+神田+東京",
-    "priceRange": 1,
-    "hours": { "en": "17:00–24:00", "jp": "17:00〜24:00" },
-    "tags": ["standing-bar", "sake", "local", "no-english"]
+    "hours": { "en": "11:30–22:00", "jp": "11:30〜22:00" },
+    "tags": ["sushi", "standing", "lunch", "sake"]
   }
 ]

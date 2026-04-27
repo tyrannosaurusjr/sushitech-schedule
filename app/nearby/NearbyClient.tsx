@@ -9,7 +9,7 @@ interface NearbySpot {
   category: 'restaurant' | 'bar' | 'cafe';
   vibe: string[];
   description: { en: string; jp: string };
-  tier: 'walk' | 'shuttle' | 'train' | 'worth-the-trip';
+  tier: string;
   distance: { en: string; jp: string };
   transport: string;
   mapsUrl: string;
@@ -18,37 +18,17 @@ interface NearbySpot {
   tags: string[];
 }
 
-const TIER_LABELS: Record<string, { en: string; jp: string; color: string }> = {
-  walk:           { en: 'Walk',         jp: '徒歩',         color: 'bg-green-100 text-green-800' },
-  shuttle:        { en: 'Shuttle bus',  jp: 'シャトルバス', color: 'bg-blue-100 text-blue-800' },
-  train:          { en: 'Short train',  jp: '電車近距離',   color: 'bg-orange-100 text-orange-800' },
-  'worth-the-trip': { en: 'Worth the trip', jp: '移動あり', color: 'bg-purple-100 text-purple-800' },
-};
-
-const CATEGORY_LABELS: Record<string, { en: string; jp: string }> = {
-  restaurant: { en: 'Restaurant', jp: 'レストラン' },
-  bar:        { en: 'Bar',        jp: 'バー・居酒屋' },
-  cafe:       { en: 'Cafe',       jp: 'カフェ' },
-};
-
-const TRANSPORT_ICONS: Record<string, string> = {
-  walk:  '🚶',
-  bus:   '🚌',
-  train: '🚆',
-};
-
 function PriceRange({ n }: { n: number }) {
   return (
-    <span className="text-neutral-500 font-mono text-sm" title={`Price range: ${'¥'.repeat(n)}`}>
-      {'¥'.repeat(n)}{'¥'.repeat(3 - n).split('').map(() => '').join('')}
+    <span className="font-mono text-sm">
+      <span className="text-neutral-700">{'¥'.repeat(n)}</span>
       <span className="text-neutral-300">{'¥'.repeat(3 - n)}</span>
     </span>
   );
 }
 
-function SpotCard({ spot, t, language }: { spot: NearbySpot; t: (v: { en: string; jp: string }) => string; language: string }) {
-  const tier = TIER_LABELS[spot.tier];
-  const category = CATEGORY_LABELS[spot.category];
+function SpotCard({ spot, t }: { spot: NearbySpot; t: (v: { en: string; jp: string }) => string }) {
+  const categoryLabel = { restaurant: 'Restaurant', bar: 'Bar', cafe: 'Cafe' }[spot.category];
 
   return (
     <div className="bg-white border border-neutral-200 rounded-xl p-5 flex flex-col gap-3 hover:border-neutral-300 transition-colors">
@@ -59,10 +39,7 @@ function SpotCard({ spot, t, language }: { spot: NearbySpot; t: (v: { en: string
           </h3>
           <div className="flex flex-wrap items-center gap-2 mt-1.5">
             <span className="text-xs font-medium text-neutral-500 bg-neutral-100 px-2 py-0.5 rounded">
-              {t(category)}
-            </span>
-            <span className={`text-xs font-medium px-2 py-0.5 rounded ${tier.color}`}>
-              {TRANSPORT_ICONS[spot.transport] || '🗺'} {language === 'jp' ? tier.jp : tier.en}
+              {categoryLabel}
             </span>
             <PriceRange n={spot.priceRange} />
           </div>
@@ -80,9 +57,7 @@ function SpotCard({ spot, t, language }: { spot: NearbySpot; t: (v: { en: string
           Maps
         </a>
       </div>
-
       <p className="text-sm text-neutral-600 leading-relaxed">{t(spot.description)}</p>
-
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-neutral-500">
         <span>{t(spot.distance)}</span>
         <span>{t(spot.hours)}</span>
@@ -92,14 +67,12 @@ function SpotCard({ spot, t, language }: { spot: NearbySpot; t: (v: { en: string
 }
 
 type FilterCategory = 'all' | 'restaurant' | 'bar' | 'cafe';
-type FilterTier = 'all' | 'walk' | 'train' | 'worth-the-trip';
 
 export default function NearbyClient() {
   const { t, language } = useLanguage();
   const [spots, setSpots] = useState<NearbySpot[]>([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState<FilterCategory>('all');
-  const [tier, setTier] = useState<FilterTier>('all');
 
   useEffect(() => {
     fetch('/data/nearby.json')
@@ -108,88 +81,100 @@ export default function NearbyClient() {
       .catch(() => setLoading(false));
   }, []);
 
-  const filtered = useMemo(() => {
-    return spots.filter(s => {
-      if (category !== 'all' && s.category !== category) return false;
-      if (tier === 'walk' && s.tier !== 'walk' && s.tier !== 'shuttle') return false;
-      if (tier === 'train' && s.tier !== 'train') return false;
-      if (tier === 'worth-the-trip' && s.tier !== 'worth-the-trip') return false;
-      return true;
-    });
-  }, [spots, category, tier]);
+  const venueSpots = useMemo(() =>
+    spots.filter(s => s.tier === 'walk' && (category === 'all' || s.category === category)),
+    [spots, category]
+  );
+
+  const shimbashibSpots = useMemo(() =>
+    spots.filter(s => s.tier === 'shimbashi' && (category === 'all' || s.category === category)),
+    [spots, category]
+  );
 
   const catBtnClass = (val: FilterCategory) =>
     `px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
       category === val ? 'bg-primary text-primary-foreground' : 'bg-neutral-100 text-neutral-600 hover:text-neutral-900'
     }`;
 
-  const tierBtnClass = (val: FilterTier) =>
-    `px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-      tier === val ? 'bg-neutral-900 text-white' : 'bg-neutral-100 text-neutral-600 hover:text-neutral-900'
-    }`;
+  const isJP = language === 'jp';
 
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-4 py-8">
-        <div className="mb-6">
-          <h1 className="text-2xl font-black text-neutral-900 mb-1">
-            {language === 'jp' ? '会場近くで食べる・飲む' : 'Eat & Drink Near the Venue'}
+
+        {/* Hero direction */}
+        <div className="bg-neutral-900 text-white rounded-xl p-6 mb-8">
+          <div className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-2">
+            {isJP ? '結論' : 'The answer'}
+          </div>
+          <h1 className="text-2xl font-black mb-2">
+            {isJP ? '新橋に行け' : 'Go to Shimbashi'}
           </h1>
-          <p className="text-sm text-neutral-500">
-            {language === 'jp'
-              ? '有明・東京ビッグサイト周辺のおすすめスポット。Matt Ketchumの個人的なキュレーション。必ず営業時間を確認してからお出かけください。'
-              : 'Picked by Matt Ketchum — 10 years Tokyo. Ariake is convention land so some spots need a train. Always verify hours before heading out.'}
+          <p className="text-neutral-300 text-sm leading-relaxed">
+            {isJP
+              ? '会場正門前（国際展示場正門駅）からゆりかもめに乗る。乗り換えなし、終点が新橋。25分。着いたら高架下か烏森神社の路地に入る。焼き鳥、立ち飲み、ラーメン、立ち食い寿司。全部ある、全部安い。'
+              : 'Get on the Yurikamome at the front gate (Kokusai-Tenjijo-Seimon). No transfers. Ride it to the last stop — Shimbashi. 25 minutes. Walk out and go under the tracks or into the Karasumori alleys. Yakitori, standing bars, ramen, standing sushi. All of it, all cheap.'}
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-3">
+        {/* Category filter */}
+        <div className="flex flex-wrap gap-2 mb-6">
           <button className={catBtnClass('all')} onClick={() => setCategory('all')}>
-            {language === 'jp' ? 'すべて' : 'All'}
+            {isJP ? 'すべて' : 'All'}
           </button>
           <button className={catBtnClass('restaurant')} onClick={() => setCategory('restaurant')}>
-            {language === 'jp' ? 'レストラン' : 'Restaurants'}
+            {isJP ? 'レストラン' : 'Restaurants'}
           </button>
           <button className={catBtnClass('bar')} onClick={() => setCategory('bar')}>
-            {language === 'jp' ? 'バー・居酒屋' : 'Bars'}
+            {isJP ? 'バー・居酒屋' : 'Bars'}
           </button>
           <button className={catBtnClass('cafe')} onClick={() => setCategory('cafe')}>
-            {language === 'jp' ? 'カフェ' : 'Cafes'}
-          </button>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mb-6">
-          <button className={tierBtnClass('all')} onClick={() => setTier('all')}>
-            {language === 'jp' ? '距離：すべて' : 'Any distance'}
-          </button>
-          <button className={tierBtnClass('walk')} onClick={() => setTier('walk')}>
-            🚶 {language === 'jp' ? '徒歩圏内' : 'Walkable'}
-          </button>
-          <button className={tierBtnClass('train')} onClick={() => setTier('train')}>
-            🚆 {language === 'jp' ? '電車近距離' : 'Short train'}
-          </button>
-          <button className={tierBtnClass('worth-the-trip')} onClick={() => setTier('worth-the-trip')}>
-            🗺 {language === 'jp' ? '移動してでも行く価値あり' : 'Worth the trip'}
+            {isJP ? 'カフェ' : 'Cafes'}
           </button>
         </div>
 
         {loading ? (
           <div className="text-neutral-500 text-sm py-8 text-center">Loading...</div>
-        ) : filtered.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="text-neutral-600">No spots match those filters.</div>
-          </div>
         ) : (
-          <div className="grid gap-4">
-            {filtered.map(spot => (
-              <SpotCard key={spot.id} spot={spot} t={t} language={language} />
-            ))}
+          <div className="space-y-8">
+            {shimbashibSpots.length > 0 && (
+              <section>
+                <h2 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-3">
+                  {isJP ? '新橋 — ゆりかもめで25分直通' : 'Shimbashi — 25 min direct on Yurikamome'}
+                </h2>
+                <div className="grid gap-4">
+                  {shimbashibSpots.map(spot => (
+                    <SpotCard key={spot.id} spot={spot} t={t} />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {venueSpots.length > 0 && (
+              <section>
+                <h2 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-3">
+                  {isJP ? '会場 — 歩いて行けるもの' : 'At the venue — what actually exists'}
+                </h2>
+                <div className="grid gap-4">
+                  {venueSpots.map(spot => (
+                    <SpotCard key={spot.id} spot={spot} t={t} />
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {shimbashibSpots.length === 0 && venueSpots.length === 0 && (
+              <div className="text-center py-12 text-neutral-600">
+                {isJP ? 'フィルターに一致するスポットがありません。' : 'No spots match that filter.'}
+              </div>
+            )}
           </div>
         )}
 
-        <p className="text-xs text-neutral-400 mt-8 text-center">
-          {language === 'jp'
-            ? '※ 営業時間・定休日は変更になる場合があります。事前にご確認ください。'
-            : 'Hours and closures change. Verify on Google Maps before you go.'}
+        <p className="text-xs text-neutral-400 mt-10 text-center">
+          {isJP
+            ? '※ 営業時間・定休日は変更になる場合があります。Googleマップで確認してからお出かけください。'
+            : 'Hours change. Check Maps before you go.'}
         </p>
       </div>
     </div>
