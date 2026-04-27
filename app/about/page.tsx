@@ -20,7 +20,6 @@ export default function AboutPage() {
 
         <div className="space-y-12">
           <section>
-            <h2 className="text-2xl font-bold mb-4 text-foreground">About this site</h2>
             <p className="text-neutral-700 leading-relaxed text-lg">
               I noticed a lot of people having trouble navigating the schedule on the day, so I put
               together something cleaner. Built the morning the event started, took about 1.5 hours.
