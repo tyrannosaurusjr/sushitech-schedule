@@ -22,10 +22,10 @@ export default function AboutPage() {
           <section>
             <h2 className="text-2xl font-bold mb-4 text-foreground">About this site</h2>
             <p className="text-neutral-700 leading-relaxed text-lg">
-              The official SusHi Tech 2026 schedule took 3+ seconds to load and had no parallel-track
-              timetable view. I built this the morning the event started. It took 1.5 hours. Full
-              timetable, real speaker pages, live Now Happening detection, shareable session URLs.
-              Static site on Cloudflare Pages.
+              I noticed a lot of people having trouble navigating the schedule on the day, so I put
+              together something cleaner. Built the morning the event started, took about 1.5 hours.
+              Full timetable view so you can see what is running in parallel, real speaker pages,
+              a live Now Happening strip, and session links you can actually share.
             </p>
           </section>
 
