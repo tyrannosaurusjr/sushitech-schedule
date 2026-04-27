@@ -19,7 +19,7 @@ jobs:
 
       - run: npm run build
 
-      - run: npx wrangler@4.64.0 pages deploy out --project-name sushitech-schedule --branch main
+      - run: npx wrangler@4.64.0 pages deploy out --project-name sushitech-schedule --branch main --functions-dir functions
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ac5489771131ecb587b85a38634029ba

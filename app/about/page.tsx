@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Navigation from "../components/Navigation";
+import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "About | SusHi Tech Tokyo 2026 Schedule",
@@ -22,10 +22,10 @@ export default function AboutPage() {
           <section>
             <h2 className="text-2xl font-bold mb-4 text-foreground">About this site</h2>
             <p className="text-neutral-700 leading-relaxed text-lg">
-              The official SusHi Tech 2026 schedule loaded in 3+ seconds and had no parallel-track
-              timetable view. I built this in 1.5 hours the morning the event started — full timetable,
-              real speaker pages, live 'Now Happening' detection, and shareable session URLs.
-              It runs as a static site on Cloudflare Pages.
+              The official SusHi Tech 2026 schedule took 3+ seconds to load and had no parallel-track
+              timetable view. I built this the morning the event started. It took 1.5 hours. Full
+              timetable, real speaker pages, live Now Happening detection, shareable session URLs.
+              Static site on Cloudflare Pages.
             </p>
           </section>
 
@@ -39,13 +39,12 @@ export default function AboutPage() {
               />
               <div>
                 <p className="text-neutral-700 leading-relaxed text-lg mb-4">
-                  Matt Ketchum — digital infrastructure consultant based in Tokyo for 10+ years.
-                  I help Japanese SMEs eliminate tool sprawl, automate broken workflows, and build
-                  reporting that makes their business legible. 40+ clients. Industries: F&B, media,
-                  professional services, events, retail.
+                  Matt Ketchum. Digital infrastructure for SMEs in Japan. I audit your tech stack,
+                  cut what you do not need, fix what is broken, and build what is missing. 10 years
+                  in Tokyo. 40+ clients across F&amp;B, media, professional services, events, and retail.
                 </p>
                 <p className="text-neutral-700 leading-relaxed text-lg mb-5">
-                  Services: Stack Audit • Infrastructure Build • Ongoing Management
+                  Stack Audit · Infrastructure Build · Ongoing Management
                 </p>
                 <div className="flex items-center gap-5">
                   <a
@@ -73,16 +72,11 @@ export default function AboutPage() {
           </section>
 
           <section className="bg-neutral-50 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4 text-foreground">Get in touch</h2>
-            <p className="text-neutral-700 leading-relaxed text-lg mb-4">
-              Running an event, product, or company with broken systems?
+            <h2 className="text-2xl font-bold mb-2 text-foreground">Get in touch</h2>
+            <p className="text-neutral-500 mb-6">
+              Running an event, product, or company with broken systems? Tell me what is going on.
             </p>
-            <a
-              href="mailto:hello@mkultraman.com"
-              className="inline-flex items-center bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
-            >
-              Get in touch →
-            </a>
+            <ContactForm />
           </section>
         </div>
       </div>
