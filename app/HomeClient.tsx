@@ -6,6 +6,7 @@ import { useData } from './hooks/useData';
 import { useFavorites } from './hooks/useFavorites';
 import { useLanguage } from './components/LanguageProvider';
 import { Session, Day } from './types';
+import { isHappeningNow } from './utils/time';
 import NowHappeningBanner from './components/NowHappeningBanner';
 import FilterSidebar from './components/FilterSidebar';
 import SessionCard from './components/SessionCard';
@@ -26,6 +27,7 @@ export default function HomeClient() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const [showLiveOnly, setShowLiveOnly] = useState(false);
 
   // Check for speaker filter from URL
   const speakerIdFromUrl = searchParams?.get('speaker');
@@ -46,8 +48,8 @@ export default function HomeClient() {
     if (!sessions.length) return [];
 
     return sessions.filter(session => {
-      // Day filter
-      if (selectedDay && session.day !== selectedDay) {
+      // Day filter (skip if live-only is on — isHappeningNow already checks day)
+      if (!showLiveOnly && selectedDay && session.day !== selectedDay) {
         return false;
       }
 
@@ -63,6 +65,11 @@ export default function HomeClient() {
 
       // Favorites filter
       if (showFavoritesOnly && !favorites.includes(session.id)) {
+        return false;
+      }
+
+      // Live now filter
+      if (showLiveOnly && !isHappeningNow(session.time, session.day)) {
         return false;
       }
 
@@ -84,7 +91,7 @@ export default function HomeClient() {
 
       return true;
     });
-  }, [sessions, selectedDay, selectedStages, selectedCategory, searchQuery, showFavoritesOnly, favorites, t]);
+  }, [sessions, selectedDay, selectedStages, selectedCategory, searchQuery, showFavoritesOnly, showLiveOnly, favorites, t]);
 
   // Sort sessions by day, then time
   const sortedSessions = useMemo(() => {
@@ -169,6 +176,19 @@ export default function HomeClient() {
                     </span>
                   )}
                 </div>
+
+                {/* Live filter */}
+                <button
+                  onClick={() => setShowLiveOnly(!showLiveOnly)}
+                  className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    showLiveOnly
+                      ? 'bg-red-500 text-white'
+                      : 'bg-neutral-100 text-neutral-600 hover:text-neutral-900'
+                  }`}
+                >
+                  <span className={`w-2 h-2 rounded-full ${showLiveOnly ? 'bg-white animate-pulse' : 'bg-red-400'}`} />
+                  Live
+                </button>
 
                 {/* View toggle */}
                 <div className="flex bg-neutral-100 rounded-lg p-1">

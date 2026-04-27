@@ -64,6 +64,34 @@ export function getStageFloor(stage: string): string {
   return floorMap[stage] || '';
 }
 
+export function isUpNext(timeStr: string, sessionDay: string, windowMins = 45): boolean {
+  const now = new Date();
+  const currentDay = now.toISOString().split('T')[0];
+
+  const dayMap: Record<string, string> = {
+    'Day1': '2026-04-27',
+    'Day2': '2026-04-28',
+    'Day3': '2026-04-29'
+  };
+
+  if (currentDay !== dayMap[sessionDay]) return false;
+
+  const { start } = parseTime(timeStr);
+  const diffMins = (start.getTime() - now.getTime()) / 60000;
+  return diffMins > 0 && diffMins <= windowMins;
+}
+
+export function getTodayDay(): string | null {
+  const now = new Date();
+  const currentDay = now.toISOString().split('T')[0];
+  const dayMap: Record<string, string> = {
+    '2026-04-27': 'Day1',
+    '2026-04-28': 'Day2',
+    '2026-04-29': 'Day3'
+  };
+  return dayMap[currentDay] || null;
+}
+
 export function getDayDate(day: string): string {
   const dayMap: Record<string, string> = {
     'Day1': 'Mon 27 Apr',
