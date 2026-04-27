@@ -43,6 +43,12 @@ export default function Navigation() {
               Speakers
             </Link>
             <Link
+              href="/nearby"
+              className="hidden sm:inline text-neutral-700 hover:text-primary font-medium transition-colors"
+            >
+              Nearby
+            </Link>
+            <Link
               href="/about"
               className="text-neutral-700 hover:text-primary font-medium transition-colors text-sm sm:text-base"
             >
