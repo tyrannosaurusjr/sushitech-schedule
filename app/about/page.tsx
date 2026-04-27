@@ -23,7 +23,7 @@ export default function AboutPage() {
             <p className="text-neutral-700 leading-relaxed text-lg">
               I noticed a lot of people having trouble navigating the schedule on the day, so I put
               together something cleaner. Built the morning the event started, took about 1.5 hours.
-              Full timetable view so you can see what is running in parallel, real speaker pages,
+              Full timetable view so you can see what is running in parallel,
               a live Now Happening strip, and session links you can actually share.
             </p>
           </section>
