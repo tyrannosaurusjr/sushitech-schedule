@@ -311,31 +311,31 @@ export default function StatsClient() {
         <div className="bg-white border border-neutral-200 rounded-xl p-5">
           {/* Stacked bar */}
           <div className="flex h-4 rounded-full overflow-hidden mb-4">
-            <div className="bg-primary" style={{ width: `${Math.round(277/688*100)}%` }} title="Likely male" />
-            <div className="bg-primary/30" style={{ width: `${Math.round(193/688*100)}%` }} title="Likely female" />
-            <div className="bg-neutral-100" style={{ width: `${Math.round(218/688*100)}%` }} title="Unclassified" />
+            <div className="bg-primary" style={{ width: '44%' }} title="Likely male" />
+            <div className="bg-primary/30" style={{ width: '33%' }} title="Likely female" />
+            <div className="bg-neutral-100" style={{ width: '23%' }} title="Unclassified" />
           </div>
           <div className="grid grid-cols-3 gap-2 text-center mb-4">
             <div>
-              <div className="text-xl font-black text-neutral-900">277</div>
+              <div className="text-xl font-black text-neutral-900">300</div>
               <div className="text-xs text-neutral-500">{isJP ? 'おそらく男性' : 'Likely male'}</div>
-              <div className="text-xs text-neutral-400">40%</div>
+              <div className="text-xs text-neutral-400">44%</div>
             </div>
             <div>
-              <div className="text-xl font-black text-neutral-900">193</div>
+              <div className="text-xl font-black text-neutral-900">227</div>
               <div className="text-xs text-neutral-500">{isJP ? 'おそらく女性' : 'Likely female'}</div>
-              <div className="text-xs text-neutral-400">28%</div>
+              <div className="text-xs text-neutral-400">33%</div>
             </div>
             <div>
-              <div className="text-xl font-black text-neutral-900">218</div>
+              <div className="text-xl font-black text-neutral-900">161</div>
               <div className="text-xs text-neutral-500">{isJP ? '判定不能' : 'Unclassifiable'}</div>
-              <div className="text-xs text-neutral-400">32%</div>
+              <div className="text-xs text-neutral-400">23%</div>
             </div>
           </div>
           <p className="text-xs text-neutral-400 border-t border-neutral-100 pt-3">
             {isJP
-              ? '英語名データベースを使った名前ベースの推定。日本語名の32%は判定不能。判定可能な名前のみで見ると 59% 男性 / 41% 女性。'
-              : 'Estimated using a Western first-name database. 32% of names — mostly Japanese — are unclassifiable. Among the 68% that can be classified: 59% male / 41% female. Treat as directional, not precise.'}
+              ? 'Western名前DBに日本語・韓国語・中国語のヒューリスティックと手動分類を組み合わせた推定。判定可能な名前のみで見ると 57% 男性 / 43% 女性。23%は組織名や判定不能の個人名。'
+              : 'Western name DB + Japanese/Korean/Chinese heuristics + manual knowledge pass. Among classifiable individuals: 57% male / 43% female. The 23% unclassifiable includes organizational placeholders and genuinely ambiguous names. Directional only.'}
           </p>
         </div>
       </section>
