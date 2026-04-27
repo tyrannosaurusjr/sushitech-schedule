@@ -175,6 +175,8 @@ export default function StatsClient() {
 
     // Misc
     const noSpeaker = sessions.filter(s => s.speakers.length === 0).length;
+    const soloSessions = sessions.filter(s => s.speakers.length === 1).length;
+    const panelSessions = sessions.filter(s => s.speakers.length > 1).length;
     const onDemand = sessions.filter(s => (s as any).hasOnDemand === 'あり').length;
     const avgSpeakers = (sessions.reduce((acc, s) => acc + s.speakers.length, 0) / sessions.length).toFixed(1);
     const uniqueStages = stageCanon.size;
@@ -187,8 +189,9 @@ export default function StatsClient() {
 
     return {
       uniqueSpeakers, byDay, byCategory, byStage, topCompanies, byCompanyType, byRole,
-      noSpeaker, onDemand, avgSpeakers, uniqueStages, aiSessions: aiSessions.length,
-      aiPct, sponsorTotal, bySponsors, ceoCount, ctoCioCount, vcCount, govCount, uniCount,
+      noSpeaker, soloSessions, panelSessions, onDemand, avgSpeakers, uniqueStages,
+      aiSessions: aiSessions.length, aiPct, sponsorTotal, bySponsors,
+      ceoCount, ctoCioCount, vcCount, govCount, uniCount,
     };
   }, [sessions, isJP]);
 
@@ -212,28 +215,25 @@ export default function StatsClient() {
   };
 
   const presenterLines = [
-    `Title: CEO (${stats.ceoCount} speakers, ${Math.round(stats.ceoCount / stats.uniqueSpeakers * 100)}%) or CTO (${stats.ctoCioCount}, ${Math.round(stats.ctoCioCount / stats.uniqueSpeakers * 100)}%)`,
-    `Sharing a stage with ${parseFloat(stats.avgSpeakers) > 1 ? Math.round(parseFloat(stats.avgSpeakers)) : 1} other people — it's almost always a panel`,
-    `From a large Japanese company, government body, or university (${Math.round((stats.govCount + stats.uniCount) / stats.uniqueSpeakers * 100)}% of speakers)`,
-    `Will mention AI whether or not it's relevant (${stats.aiPct}% of all sessions do)`,
-    `Has a slide deck that was due three weeks ago and finished last night`,
+    `Title: CEO (${stats.ceoCount} speakers, ${Math.round(stats.ceoCount / stats.uniqueSpeakers * 100)}%) or CTO/CIO (${stats.ctoCioCount}, ${Math.round(stats.ctoCioCount / stats.uniqueSpeakers * 100)}%)`,
+    `On a panel — ${Math.round(stats.panelSessions / (stats.panelSessions + stats.soloSessions) * 100)}% of sessions with speakers have more than one, averaging ${stats.avgSpeakers} per session`,
+    `From a Japanese company, government body, or university — top represented orgs are U Tokyo, Tokyo Metropolitan Government, and Fujitsu`,
+    `In a session that mentions AI (${stats.aiPct}% of all sessions do)`,
+    `Day 1 presenter — it has ${stats.byDay.Day1} sessions vs ${stats.byDay.Day3} on Day 3`,
   ];
 
   const sponsorLines = [
-    `Either a city government or large corporate — ${stats.bySponsors.get('City Partner') || 0} city partners, ${stats.bySponsors.get('Corporate Partner') || 0} corporate partners`,
-    `Has a branded stage named after them (one of ${stats.uniqueStages})`,
-    `${stats.bySponsors.get('ITAMAE Program') || 0} sessions under the ITAMAE program — Japan's startup internationalization push`,
-    `Paying to be seen, not to sell — this is a government-adjacent conference`,
-    `Logo appears on materials they haven't fully approved yet`,
+    `Either a city government or large corporate — ${stats.bySponsors.get('City Partner') || 0} city partners, ${stats.bySponsors.get('Corporate Partner') || 0} corporate partners in the data`,
+    `Has a named stage — ${stats.uniqueStages} distinct stages in the venue, most named for their backer`,
+    `${stats.bySponsors.get('ITAMAE Program') || 0} sessions under the ITAMAE program — Japan's government-backed startup internationalization push`,
+    `Present for association, not direct sales — the organizer is Tokyo Metropolitan Government, not a trade body`,
   ];
 
   const attendeeLines = [
-    `Japanese business professional, likely from enterprise, government, or academia`,
-    `Here because their company sent them, not because they chose this over alternatives`,
-    `Carrying a tote bag with 4 other tote bags inside it`,
-    `Will attend 2 sessions, spend 3 hours at the exhibition floor, and leave before the closing`,
-    `Has a LinkedIn connection request pending from someone they met in the lunch queue`,
-    `Note: we have no attendee data — this is editorial inference`,
+    `We have no public attendee data — none of the following is confirmed`,
+    `The conference is organized by Tokyo Metropolitan Government; the crowd likely reflects its partner ecosystem: enterprises, agencies, and universities`,
+    `International mix: Google, UNICEF, and multiple international VCs appear in the speaker roster — attendees are not all Japanese`,
+    `Day 3 runs only ${stats.byDay.Day3} sessions vs ${stats.byDay.Day1} on Day 1 — most people probably don't stay all three days`,
   ];
 
   return (
