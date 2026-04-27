@@ -317,17 +317,17 @@ export default function StatsClient() {
           </div>
           <div className="grid grid-cols-3 gap-2 text-center mb-4">
             <div>
-              <div className="text-xl font-black text-neutral-900">300</div>
+              <div className="text-xl font-black text-neutral-900">302</div>
               <div className="text-xs text-neutral-500">{isJP ? 'おそらく男性' : 'Likely male'}</div>
               <div className="text-xs text-neutral-400">44%</div>
             </div>
             <div>
-              <div className="text-xl font-black text-neutral-900">227</div>
+              <div className="text-xl font-black text-neutral-900">230</div>
               <div className="text-xs text-neutral-500">{isJP ? 'おそらく女性' : 'Likely female'}</div>
               <div className="text-xs text-neutral-400">33%</div>
             </div>
             <div>
-              <div className="text-xl font-black text-neutral-900">161</div>
+              <div className="text-xl font-black text-neutral-900">156</div>
               <div className="text-xs text-neutral-500">{isJP ? '判定不能' : 'Unclassifiable'}</div>
               <div className="text-xs text-neutral-400">23%</div>
             </div>
