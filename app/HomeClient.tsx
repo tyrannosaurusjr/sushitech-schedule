@@ -157,41 +157,42 @@ export default function HomeClient() {
           <div className="flex-1 lg:ml-64">
             <div className="p-6">
               {/* Header */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-4">
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 flex-1 min-w-0">
                   <button
                     onClick={() => setSidebarOpen(true)}
-                    className="lg:hidden p-2 hover:bg-neutral-100 rounded-md"
+                    className="lg:hidden p-2 hover:bg-neutral-100 rounded-md shrink-0"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                   </button>
-                  <h1 className="text-2xl font-black text-neutral-900">
+                  <h1 className="text-xl sm:text-2xl font-black text-neutral-900 truncate">
                     Conference Schedule
                   </h1>
                   {filteredSessions.length > 0 && (
-                    <span className="text-neutral-600">
-                      ({filteredSessions.length} session{filteredSessions.length !== 1 ? 's' : ''})
+                    <span className="text-neutral-600 text-sm shrink-0">
+                      ({filteredSessions.length})
                     </span>
                   )}
                 </div>
 
-                {/* Live filter */}
-                <button
-                  onClick={() => setShowLiveOnly(!showLiveOnly)}
-                  className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    showLiveOnly
-                      ? 'bg-red-500 text-white'
-                      : 'bg-neutral-100 text-neutral-600 hover:text-neutral-900'
-                  }`}
-                >
-                  <span className={`w-2 h-2 rounded-full ${showLiveOnly ? 'bg-white animate-pulse' : 'bg-red-400'}`} />
-                  Live
-                </button>
+                <div className="flex items-center gap-2 shrink-0">
+                  {/* Live filter */}
+                  <button
+                    onClick={() => setShowLiveOnly(!showLiveOnly)}
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      showLiveOnly
+                        ? 'bg-red-500 text-white'
+                        : 'bg-neutral-100 text-neutral-600 hover:text-neutral-900'
+                    }`}
+                  >
+                    <span className={`w-2 h-2 rounded-full ${showLiveOnly ? 'bg-white animate-pulse' : 'bg-red-400'}`} />
+                    Live
+                  </button>
 
-                {/* View toggle */}
-                <div className="flex bg-neutral-100 rounded-lg p-1">
+                  {/* View toggle */}
+                  <div className="flex bg-neutral-100 rounded-lg p-1">
                   <button
                     onClick={() => setViewMode('list')}
                     className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
@@ -212,6 +213,7 @@ export default function HomeClient() {
                   >
                     Timetable
                   </button>
+                </div>
                 </div>
               </div>
 
