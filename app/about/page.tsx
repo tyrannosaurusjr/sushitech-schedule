@@ -57,7 +57,7 @@ export default function AboutPage() {
                     mkultraman.com →
                   </a>
                   <a
-                    href="https://linkedin.com/in/mkultraman"
+                    href="https://www.linkedin.com/in/matthew-ketchum/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-neutral-500 hover:text-neutral-800 font-medium transition-colors flex items-center gap-1.5"
