@@ -154,7 +154,7 @@ export default function HomeClient() {
             onFavoritesToggle={() => setShowFavoritesOnly(!showFavoritesOnly)}
           />
 
-          <div className="flex-1 lg:ml-64">
+          <div className="flex-1 lg:ml-64 min-w-0">
             <div className="p-6">
               {/* Header */}
               <div className="flex flex-wrap items-center gap-3 mb-6">
