@@ -23,7 +23,7 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold mb-4 text-foreground">About this site</h2>
             <p className="text-neutral-700 leading-relaxed text-lg">
               The official SusHi Tech 2026 schedule loaded in 3+ seconds and had no parallel-track
-              timetable view. I built this in a day as a faster, cleaner alternative — full timetable,
+              timetable view. I built this in 1.5 hours the morning the event started — full timetable,
               real speaker pages, live 'Now Happening' detection, and shareable session URLs.
               It runs as a static site on Cloudflare Pages.
             </p>
