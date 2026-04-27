@@ -16,6 +16,10 @@ export const metadata: Metadata = {
     title: "SusHi Tech Tokyo 2026",
     description: "Startup conference in Tokyo, April 27-29, 2026",
     type: "website",
+    siteName: "SusHi Tech 2026 Schedule — Built by MKUltraman",
+  },
+  twitter: {
+    creator: "@mkultraman",
   },
   robots: {
     index: true,
@@ -39,6 +43,26 @@ export default function RootLayout({
           <main className="flex-1">
             {children}
           </main>
+          <footer className="text-xs text-neutral-400 py-4 text-center border-t border-neutral-100 bg-white">
+            Built by Matt Ketchum •{' '}
+            <a
+              href="https://mkultraman.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-neutral-600 transition-colors"
+            >
+              MKUltraman
+            </a>
+            {' '}• Digital infrastructure for Japan SMEs •{' '}
+            <a
+              href="https://mkultraman.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-neutral-600 transition-colors"
+            >
+              mkultraman.com
+            </a>
+          </footer>
         </LanguageProvider>
       </body>
     </html>

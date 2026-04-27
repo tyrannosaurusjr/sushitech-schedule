@@ -43,6 +43,46 @@ export default function SessionDetailClient() {
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDateTime}/${endDateTime}&details=${details}&location=${location}`;
   };
 
+  const handleShare = async () => {
+    if (!session) return;
+
+    const shareData = {
+      title: t(session.title),
+      text: `${t(session.title)} — ${session.time} at ${session.stage} • SusHi Tech 2026`,
+      url: window.location.href
+    };
+
+    if (navigator.share && navigator.canShare(shareData)) {
+      try {
+        await navigator.share(shareData);
+      } catch (error) {
+        // Fallback to clipboard
+        copyToClipboard();
+      }
+    } else {
+      copyToClipboard();
+    }
+  };
+
+  const copyToClipboard = () => {
+    if (!session) return;
+
+    const shareText = `${t(session.title)} — ${session.time} at ${session.stage} • SusHi Tech 2026
+${window.location.href}`;
+
+    navigator.clipboard.writeText(shareText).then(() => {
+      // Could show a toast notification here
+    }).catch(() => {
+      // Fallback: create a temporary textarea
+      const textArea = document.createElement('textarea');
+      textArea.value = shareText;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+    });
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[50vh]">
@@ -161,6 +201,15 @@ export default function SessionDetailClient() {
             >
               Add to Calendar
             </a>
+            <button
+              onClick={handleShare}
+              className="border border-neutral-300 px-4 py-2 rounded-md hover:bg-neutral-50 transition-colors flex items-center space-x-2"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+              </svg>
+              <span>Share</span>
+            </button>
             <a
               href={session.url}
               target="_blank"

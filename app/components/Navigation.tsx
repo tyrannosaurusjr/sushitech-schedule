@@ -44,6 +44,12 @@ export default function Navigation() {
             >
               Speakers
             </Link>
+            <Link
+              href="/about"
+              className="text-neutral-700 hover:text-primary font-medium transition-colors"
+            >
+              About
+            </Link>
             <button
               onClick={toggleLanguage}
               className="bg-neutral-100 hover:bg-neutral-200 px-3 py-1 rounded-md text-sm font-medium transition-colors"
