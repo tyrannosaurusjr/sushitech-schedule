@@ -303,6 +303,43 @@ export default function StatsClient() {
         </div>
       </section>
 
+      {/* Gender estimate */}
+      <section className="mb-8">
+        <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-4">
+          {isJP ? '性別推定（名前ベース）' : 'Gender — estimated from first names'}
+        </h2>
+        <div className="bg-white border border-neutral-200 rounded-xl p-5">
+          {/* Stacked bar */}
+          <div className="flex h-4 rounded-full overflow-hidden mb-4">
+            <div className="bg-primary" style={{ width: `${Math.round(277/688*100)}%` }} title="Likely male" />
+            <div className="bg-primary/30" style={{ width: `${Math.round(193/688*100)}%` }} title="Likely female" />
+            <div className="bg-neutral-100" style={{ width: `${Math.round(218/688*100)}%` }} title="Unclassified" />
+          </div>
+          <div className="grid grid-cols-3 gap-2 text-center mb-4">
+            <div>
+              <div className="text-xl font-black text-neutral-900">277</div>
+              <div className="text-xs text-neutral-500">{isJP ? 'おそらく男性' : 'Likely male'}</div>
+              <div className="text-xs text-neutral-400">40%</div>
+            </div>
+            <div>
+              <div className="text-xl font-black text-neutral-900">193</div>
+              <div className="text-xs text-neutral-500">{isJP ? 'おそらく女性' : 'Likely female'}</div>
+              <div className="text-xs text-neutral-400">28%</div>
+            </div>
+            <div>
+              <div className="text-xl font-black text-neutral-900">218</div>
+              <div className="text-xs text-neutral-500">{isJP ? '判定不能' : 'Unclassifiable'}</div>
+              <div className="text-xs text-neutral-400">32%</div>
+            </div>
+          </div>
+          <p className="text-xs text-neutral-400 border-t border-neutral-100 pt-3">
+            {isJP
+              ? '英語名データベースを使った名前ベースの推定。日本語名の32%は判定不能。判定可能な名前のみで見ると 59% 男性 / 41% 女性。'
+              : 'Estimated using a Western first-name database. 32% of names — mostly Japanese — are unclassifiable. Among the 68% that can be classified: 59% male / 41% female. Treat as directional, not precise.'}
+          </p>
+        </div>
+      </section>
+
       {/* Speaker roles */}
       <section className="mb-8">
         <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-4">
