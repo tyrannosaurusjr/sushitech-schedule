@@ -23,9 +23,19 @@ export default function Navigation() {
     <nav className="border-b border-neutral-200 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-14 sm:h-16 items-center">
-          <Link href="/" className="flex items-center min-w-0 shrink">
+          <Link href="/" className="flex items-center gap-2.5 min-w-0 shrink">
+            {/* Sushi roll cross-section mark */}
+            <svg width="28" height="28" viewBox="0 0 32 32" className="shrink-0" aria-hidden="true">
+              <rect width="32" height="32" rx="6" fill="#fafaf7"/>
+              <circle cx="16" cy="16" r="14" fill="#1c1917"/>
+              <circle cx="16" cy="16" r="10" fill="#fafaf7"/>
+              <circle cx="16" cy="16" r="5.5" fill="#8b1a1a"/>
+              <circle cx="16"    cy="8.25"  r="1.2" fill="#44403c" opacity="0.45"/>
+              <circle cx="22.71" cy="19.88" r="1.2" fill="#44403c" opacity="0.45"/>
+              <circle cx="9.29"  cy="19.88" r="1.2" fill="#44403c" opacity="0.45"/>
+            </svg>
             <span className="font-black text-lg sm:text-xl text-primary whitespace-nowrap">SusHi Tech 2026</span>
-            <span className="hidden sm:inline ml-2 text-sm text-neutral-600 whitespace-nowrap">Apr 27–29 · Tokyo</span>
+            <span className="hidden sm:inline text-sm text-neutral-600 whitespace-nowrap">Apr 27–29 · Tokyo</span>
             <LiveBadge />
           </Link>
 
