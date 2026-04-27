@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "./components/LanguageProvider";
 import Navigation from "./components/Navigation";
+import MeetupPopup from "./components/MeetupPopup";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -43,6 +44,7 @@ export default function RootLayout({
           <main className="flex-1">
             {children}
           </main>
+          <MeetupPopup />
           <footer className="text-xs text-neutral-400 py-4 text-center border-t border-neutral-100 bg-white">
             Built by Matt Ketchum •{' '}
             <a
