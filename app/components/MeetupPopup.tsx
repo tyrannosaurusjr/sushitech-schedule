@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from './LanguageProvider';
 
 // Swap this to a Calendly link or booking page when ready
-const BOOKING_URL = 'mailto:matthewbketchum@gmail.com?subject=Naka%20Meguro%20meetup%20%E2%80%94%20SusHi%20Tech%202026&body=Hey%20Matt%2C%20I%27d%20love%20to%20grab%20a%20beer%20and%20talk%20honestly%20about%20the%20conference.';
+const BOOKING_URL = 'https://calendly.com/mkultraman/mkultraman-beer';
 
 export default function MeetupPopup() {
   const [show, setShow] = useState(false);
