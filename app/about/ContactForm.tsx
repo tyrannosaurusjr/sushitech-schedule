@@ -1,6 +1,6 @@
 'use client';
 
-const GOOGLE_FORM_URL = '';
+const GOOGLE_FORM_URL = 'https://forms.gle/os2zS2U515QFK7m96';
 
 export default function ContactForm() {
   if (!GOOGLE_FORM_URL) {
