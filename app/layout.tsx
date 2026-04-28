@@ -11,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'),
   title: "SusHi Tech Tokyo 2026 | Conference Schedule",
   description: "Official schedule for SusHi Tech Tokyo 2026 startup conference, April 27-29, 2026",
   openGraph: {
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     siteName: "SusHi Tech 2026 Schedule — Built by MKUltraman",
   },
   twitter: {
+    card: "summary_large_image",
     creator: "@mkultraman",
   },
   robots: {

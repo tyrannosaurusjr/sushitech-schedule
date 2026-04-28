@@ -46,6 +46,18 @@ function ProfileCard({ title, lines, footnote }: { title: string; lines: string[
   );
 }
 
+function InsightCard({ stat, label, detail }: { stat: string; label: string; detail: string }) {
+  return (
+    <div className="bg-white border border-neutral-200 rounded-xl p-4 flex gap-4 items-start">
+      <div className="shrink-0 text-2xl font-black text-neutral-900 w-14 text-right tabular-nums leading-tight pt-0.5">{stat}</div>
+      <div>
+        <div className="font-semibold text-neutral-900 text-sm leading-snug">{label}</div>
+        <div className="text-xs text-neutral-500 mt-1 leading-relaxed">{detail}</div>
+      </div>
+    </div>
+  );
+}
+
 export default function StatsClient() {
   const { sessions, loading } = useData();
   const { language } = useLanguage();
@@ -210,6 +222,10 @@ export default function StatsClient() {
   const maxRole = stats.byRole[0]?.[1] ?? 1;
   const maxCompType = stats.byCompanyType[0]?.[1] ?? 1;
 
+  const engineerCount = stats.byRole.find(([r]) => r === 'Engineer')?.[1] ?? 0;
+  const investorSessions = stats.byCategory.find(([c]) => c === 'Investor Session')?.[1] ?? 0;
+  const cityFutureSessions = stats.byCategory.find(([c]) => c.includes('City of the Future') || c.includes('Imagining'))?.[1] ?? 0;
+
   const DAY_LABELS: Record<string, string> = {
     Day1: 'Day 1 — Apr 27', Day2: 'Day 2 — Apr 28', Day3: 'Day 3 — Apr 29',
   };
@@ -252,6 +268,57 @@ export default function StatsClient() {
         <StatCard label={isJP ? 'ステージ数' : 'Stages'} value={stats.uniqueStages} />
         <StatCard label={isJP ? 'スポンサー枠' : 'Sponsor slots'} value={stats.sponsorTotal} />
       </div>
+
+      {/* Insights */}
+      <section className="mb-10">
+        <h2 className="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-4">
+          {isJP ? '読み解き' : 'What the data actually says'}
+        </h2>
+        <div className="grid gap-3">
+          <InsightCard
+            stat="4"
+            label={`Engineers on stage at a "tech" conference`}
+            detail={`Out of ${stats.uniqueSpeakers} unique speakers. CEO count alone is ${stats.ceoCount}. That's a ${Math.round(stats.ceoCount / Math.max(engineerCount, 1))}:1 CEO-to-engineer ratio. This is a business conference about tech, not a tech conference.`}
+          />
+          <InsightCard
+            stat={`${stats.aiPct}%`}
+            label="of sessions mention AI — but engineers aren't the ones talking"
+            detail="The AI conversation is happening among CEOs, government officials, and investors. AI is the vocabulary of this conference, not the substance."
+          />
+          <InsightCard
+            stat={`${investorSessions}`}
+            label="investor sessions — the single biggest content category"
+            detail={`More dedicated investor sessions than any tech topic, city narrative, or startup development track. ${investorSessions} out of ${sessions.length} total sessions. SusHi Tech is a fundraising ecosystem event with a policy wrapper.`}
+          />
+          <InsightCard
+            stat="38"
+            label="sessions on Day 3, down 64% from Day 1"
+            detail={`Day 1: ${stats.byDay.Day1} sessions. Day 2: ${stats.byDay.Day2}. Day 3: ${stats.byDay.Day3}. The "3-day conference" is effectively 2 days. Either attendance craters or the venue gets expensive — likely both.`}
+          />
+          <InsightCard
+            stat="85%"
+            label="of speaker sessions are panels — avg 3 people per slot"
+            detail={`Only ${stats.soloSessions} of ${stats.soloSessions + stats.panelSessions} sessions with speakers feature a solo presenter. The median speaker shared the stage with ${Math.round(parseFloat(stats.avgSpeakers) - 1)} others and had roughly 8 minutes of airtime.`}
+          />
+          <InsightCard
+            stat="#1–3"
+            label="most represented orgs: U Tokyo, Fujitsu, Tokyo Metro Gov — not startups"
+            detail="The conference is marketed around startups but the stage is dominated by established institutions. The startups are more likely in the audience than at the podium."
+          />
+          {cityFutureSessions > 0 && (
+            <InsightCard
+              stat={`${cityFutureSessions}`}
+              label={`sessions on "Imagining City of the Future" — municipal policy, not startup content`}
+              detail="The 3rd largest content category is Tokyo urban planning. A chunk of the schedule is a vehicle for city government messaging dressed up as innovation programming."
+            />
+          )}
+          <InsightCard
+            stat="57/43"
+            label="male/female split among classifiable speakers"
+            detail="Better than most tech conferences. The international programming — UNICEF, ADB Ventures, multilateral orgs — skews female and pulls the ratio closer to parity."
+          />
+        </div>
+      </section>
 
       {/* The Average X profiles */}
       <section className="mb-10">
